@@ -12,6 +12,8 @@ import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
 
+import javax.swing.text.AbstractDocument;
+
 public class Circus {
     private static Animal[] animals = {
             new Duck("Drake"),
@@ -63,13 +65,19 @@ public class Circus {
         Cage<Duck> duckCage = new Cage<>();
         Duck duck = new Duck("meow");
         duckCage.lockUp(duck);
+
         Parrot parrot = new Parrot("woof");
         Cage<Parrot> parrotCage = new Cage<>();
         parrotCage.lockUp(parrot);
 
+        Elephant elias = new Elephant("Elias");
+        Cage<Elephant> elephantCage = new Cage<>();
+        elephantCage.lockUp(elias);
+
         ArrayList<Cage> cages = new ArrayList<>();
         cages.add(duckCage);
         cages.add(parrotCage);
+        cages.add(elephantCage);
 
         for(Cage c: cages) {
             c.release();
