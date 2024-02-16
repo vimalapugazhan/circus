@@ -1,9 +1,9 @@
 package circus;
 
-import circus.animal.Animal;
-import circus.animal.Duck;
-import circus.animal.Parrot;
-import circus.animal.Tiger;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import circus.animal.*;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
@@ -41,8 +41,37 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+//        System.out.println("Number of animals in Circus: " + animals.length);
+//        animals[3] = new Duck("Louie");
+//        makeAnimalsTalk();
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        printCircusSize(animalArrayList);
+
+        animalArrayList.add(new Duck("Louie"));
+
+        Elephant bigMan = new Elephant("Big Man");
+        animalArrayList.add(bigMan);
+        animalArrayList.add(new Parrot("Andy"));
+        System.out.println("Before sorting: ");
+        printAllAnimals(animalArrayList);
+        printCircusSize(animalArrayList);
+
+        System.out.println("After sorting: ");
+        animalArrayList.sort(Animal.AnimalsNameComparator);
+        printAllAnimals(animalArrayList);
+
+        System.out.println("Big Man is at " + animalArrayList.indexOf(bigMan));
+//        System.out.println("Total value of animals " + calculateAssetValue(animals));
+//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+    }
+
+    private static void printCircusSize(ArrayList<Animal> animalArrayList) {
+        System.out.println("Number of animals in Circus: " + animalArrayList.size());
+    }
+
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a : animalArrayList) {
+            System.out.println(a);
+        }
     }
 }
