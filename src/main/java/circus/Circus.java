@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import circus.animal.*;
+
+
+import circus.stuff.Cage;
+
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
@@ -41,28 +45,35 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-//        System.out.println("Number of animals in Circus: " + animals.length);
-//        animals[3] = new Duck("Louie");
-//        makeAnimalsTalk();
+        System.out.println("Number of animals: " + animals.length);
         ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
-        printCircusSize(animalArrayList);
+        System.out.println("Number of animals: " + animalArrayList.size());
+        animalArrayList.add(new Tiger("Sherkhan"));
+        System.out.println("Number of animals: " + animalArrayList.size());
 
-        animalArrayList.add(new Duck("Louie"));
+        animalArrayList.add(new Parrot("Dolly"));
 
-        Elephant bigMan = new Elephant("Big Man");
-        animalArrayList.add(bigMan);
-        animalArrayList.add(new Parrot("Andy"));
-        System.out.println("Before sorting: ");
-        printAllAnimals(animalArrayList);
-        printCircusSize(animalArrayList);
+        Duck louie = new Duck("Donald");
+        animalArrayList.add(louie);
+        Elephant strongOne = new Elephant("StrongOne");
+        animalArrayList.add(strongOne);
 
-        System.out.println("After sorting: ");
-        animalArrayList.sort(Animal.AnimalsNameComparator);
         printAllAnimals(animalArrayList);
 
-        System.out.println("Big Man is at " + animalArrayList.indexOf(bigMan));
-//        System.out.println("Total value of animals " + calculateAssetValue(animals));
-//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        Cage<Duck> duckCage = new Cage<>();
+        Duck duck = new Duck("meow");
+        duckCage.lockUp(duck);
+        Parrot parrot = new Parrot("woof");
+        Cage<Parrot> parrotCage = new Cage<>();
+        parrotCage.lockUp(parrot);
+
+        ArrayList<Cage> cages = new ArrayList<>();
+        cages.add(duckCage);
+        cages.add(parrotCage);
+
+        for(Cage c: cages) {
+            c.release();
+        }
     }
 
     private static void printCircusSize(ArrayList<Animal> animalArrayList) {
